@@ -28,7 +28,10 @@ public class MouseLook : MonoBehaviour {
 	public float minimumY = -60F;
 	public float maximumY = 60F;
 
-	float rotationY = 0F;
+    public Transform trCam;
+    public float vel;
+
+    float rotationY = 0F;
 
 	void Update ()
 	{
@@ -52,9 +55,15 @@ public class MouseLook : MonoBehaviour {
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
-	}
-	
-	void Start ()
+
+        if (Input.GetKey("w")) transform.Translate(Vector3.forward * vel * Time.deltaTime);
+        if (Input.GetKey("s")) transform.Translate(-Vector3.forward * vel * Time.deltaTime);
+        if (Input.GetKey("a")) transform.Translate(Vector3.left * vel * Time.deltaTime);
+        if (Input.GetKey("d")) transform.Translate(Vector3.right * vel * Time.deltaTime);
+
+    }
+
+    void Start ()
 	{
 		// Make the rigid body not change rotation
 		if (GetComponent<Rigidbody>())
