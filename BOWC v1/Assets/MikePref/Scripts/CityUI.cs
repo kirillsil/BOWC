@@ -7,14 +7,16 @@ public class CityUI : MonoBehaviour
     public GameObject oCity;
     public GameObject oOfficeSelf;
     public GameObject oOfficeBackGround;
+    public GameObject oBuildingMenu;
     public bool cityOn;
+    public static CityUI s;
 
     public List<GameObject> oPanelDepartments;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        s = this;
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class CityUI : MonoBehaviour
     {
         if(cityOn)
         {
-            oCity.SetActive(false);
+           // oCity.SetActive(false);
             oOfficeSelf.SetActive(true);
             oOfficeBackGround.SetActive(true);
             cityOn = false;
@@ -48,10 +50,15 @@ public class CityUI : MonoBehaviour
         }
         //else
         {
-            oCity.SetActive(true);
+            //oCity.SetActive(true);
             oOfficeSelf.SetActive(false);
             oOfficeBackGround.SetActive(false);
             cityOn = true;
         }
+    }
+
+    public void BuildingMenu(bool en_)
+    {
+        oBuildingMenu.SetActive(en_);
     }
 }
