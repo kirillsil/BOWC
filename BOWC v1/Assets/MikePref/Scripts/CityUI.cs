@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CityUI : MonoBehaviour
 {
+    public Text tMoney;
+
     public GameObject oCity;
     public GameObject oOfficeSelf;
     public GameObject oOfficeBackGround;
@@ -11,31 +14,38 @@ public class CityUI : MonoBehaviour
     public bool cityOn;
     public static CityUI s;
 
-    public List<GameObject> oPanelDepartments;
+    //public List<GameObject> oPanelDepartments;
+    public List<Department> departments;
 
     // Start is called before the first frame update
     void Start()
     {
         s = this;
+        tMoney.text = ((int)Player.s.money).ToString("### ### ### ###");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        tMoney.text = ((int)Player.s.money).ToString("### ### ### ###");
     }
 
     public void OnClickPanelDepartments(int n_)
     {
-        if (oPanelDepartments[n_].activeSelf) oPanelDepartments[n_].SetActive(false);
-        else
+        for (int i = 0; i < departments.Count; i++)
         {
-            foreach (var _d in oPanelDepartments)
-            {
-                _d.SetActive(false);
-                oPanelDepartments[n_].SetActive(true);
-            }
+            if (i != n_) departments[i].Close();
+            else departments[i].Inverse();
         }
+        //if (oPanelDepartments[n_].activeSelf) oPanelDepartments[n_].SetActive(false);
+        //else
+        //{
+        //    foreach (var _d in oPanelDepartments)
+        //    {
+        //        _d.SetActive(false);
+        //        oPanelDepartments[n_].SetActive(true);
+        //    }
+        //}
     }
 
     public void OnClickCityBtn()
