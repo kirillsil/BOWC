@@ -4424,7 +4424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Time to upgrade\r"
+  m_Text: Time to upgrade
 --- !u!114 &2799854427599475569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4472,7 +4472,7 @@ GameObject:
   - component: {fileID: 2799854427599475568}
   - component: {fileID: 2799854427599475569}
   m_Layer: 5
-  m_Name: 'Time to upgrade '
+  m_Name: Time to upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10178,7 +10178,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Producation
+  m_Text: Capacity
 --- !u!114 &2799854428249780790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24629,7 +24629,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 326.10004, y: 230.3}
-  m_SizeDelta: {x: 243.3, y: 76}
+  m_SizeDelta: {x: 305.6, y: 76}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &3229585537182542597
 GameObject:
@@ -24691,7 +24691,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "time to completion\r\n"
+  m_Text: "Time to completion\r\n"
 --- !u!114 &3229585537182542603
 MonoBehaviour:
   m_ObjectHideFlags: 0
