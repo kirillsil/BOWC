@@ -35,4 +35,15 @@ public class DepUpgradeString : MonoBehaviour
     {
         if(buttonActive) du.StartUpgrade();
     }
+    public void ButtonOnOff(bool onoff_)
+    {
+        buttonActive=onoff_;
+        if(onoff_) iButton.color=Color.white;
+        else iButton.color=new Color(0.3f,0.3f,0.3f);
+    }
+    public void LightOnOff(bool onoff_)
+    {
+         if(onoff_) iButton.color=Color.white;
+        else iButton.color=new Color(0.3f,0.3f,0.3f);
+    }
 }

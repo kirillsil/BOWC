@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DepUpgrade : MonoBehaviour
+public class DepUpgrade : MonoBehaviour , ICloseWindow
 {
     public int index;
     public int level;
@@ -50,13 +50,20 @@ public class DepUpgrade : MonoBehaviour
                 break;
             case 1000:
                 timeTo -= Time.deltaTime;
-                slTime2.value = (GP.departTime[index][level] - timeTo) / GP.departTime[index][level];
+                slTime2.value = (GP.upgrade[index][5*(level+1)+3] - timeTo) / GP.upgrade[index][5*(level+1)+3];
                 if (timeTo<=0)
                 {
                     slTime2.gameObject.SetActive(false);
+                    oProgress.SetActive(false);
+                    GameObject _g=duss[0].gameObject;
+                    duss.RemoveAt(0);
+                    Destroy(_g);
                     level++;
+                    if(duss.Count>0 && Player.s.money>=GP.upgrade[index][5*(level+1)+2])
+                        duss[0].ButtonOnOff(true);
+ 
                     state = 0;
-                    if (level == GP.departAmount[index].Length - 1)
+                    if (level == GP.upgrade[index].Length-1)
                     {
                         upgrading = 2;
                        // oUpDoing.SetActive(false);
@@ -76,54 +83,65 @@ public class DepUpgrade : MonoBehaviour
     {
         if(GP.upgrade[index][5*(level+1)+2]<=Player.s.money)
         {
-            Player.s.AddMoney(-GP.departPrice[index][level]);
+            Player.s.AddMoney(-GP.upgrade[index][5*(level+1)+2]);
            //oUpInfo.SetActive(false);
            //oUpDoing.SetActive(true);
             state = 1000;
             upgrading = 1;
-            timeTo = GP.departTime[index][level];
+            timeTo = GP.upgrade[index][5*(level+1)+3];
             Refresh();
             slTime2.gameObject.SetActive(true);
             oProgress.SetActive(true);
-            GameObject _g=duss[0].gameObject;
-            duss.RemoveAt(0);
-            Destroy(_g);
+            duss[0].ButtonOnOff(false);
+            //GameObject _g=duss[0].gameObject;
+            //duss.RemoveAt(0);
+            //Destroy(_g);
         }
  
     }
 
     public void Show(bool onoff_)
     {
-        oPanel.SetActive(onoff_);
-        onoff = onoff_;
-        if (onoff) Refresh();
+        if (onoff_) Open();
+        else Close();
     }
 
+    public void Open()
+    {
+        oPanel.SetActive(true);
+        onoff = true;
+        CloseAnyWindow.s.AddMe(this);
+       // if (onoff) Refresh();
+    }
     public void Close()
     {
         oPanel.SetActive(false);
         onoff = false;
+        CloseAnyWindow.s.RemoveMe(this);
        // if (onoff) Refresh();
     }
 
     public void Inverse()
     {
-        onoff = !onoff;
-        oPanel.SetActive(onoff);
-        if (onoff) Refresh();
+       if (!onoff) Open();
+        else Close();
     }
 
+    public void CloseWindow()
+    {
+        Close();
+    }
     void Refresh()
     {
-        tLevel.text = (level+1).ToString();
-        tCurMax.text= GP.departAmount[index][level].ToString();
+        tLevel.text = "Current level: "+(level+1).ToString();
+        tCurMax.text= "Capacity: "+GP.upgrade[index][5*(level)+1].ToString();
         if (upgrading==1)
         {
             //oUpDoing.SetActive(true);
             //oUpInfo.SetActive(false);
             //tToMax.text= GP.departAmount[index][level+1].ToString();
             tToTime.text = GP.TimeString(timeTo);
-            slTime.value = (GP.departTime[index][level] - timeTo) / GP.departTime[index][level];
+            slTime.value = (GP.upgrade[index][5*(level+1)+3] - timeTo) / GP.upgrade[index][5*(level+1)+3];
             //slTime2.value = (GP.departTime[index][level] - timeTo) / GP.departTime[index][level];
 
         }
@@ -163,4 +181,9 @@ public class DepUpgrade : MonoBehaviour
         }
         oDepUpString.SetActive(false);
     }
+}
+
+public interface ICloseWindow
+{
+    void CloseWindow();
 }

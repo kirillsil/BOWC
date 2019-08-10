@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     {
         money += m_;
         if (money < 0) money = 0;
-        if (CityUI.s != null && money > GP.departAmount[0][CityUI.s.departments[0].level])
-            money = GP.departAmount[0][CityUI.s.departments[0].level];
+        if (CityUI.s != null && money > GP.upgrade[0][5*CityUI.s.depUpgrade[0].level+1])
+            money = GP.upgrade[0][5*CityUI.s.depUpgrade[0].level+1];
     }
 }

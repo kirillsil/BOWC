@@ -15,7 +15,7 @@ public class CityUI : MonoBehaviour
     public static CityUI s;
 
     //public List<GameObject> oPanelDepartments;
-    public List<Department> departments;
+    public List<DepUpgrade> depUpgrade;
 
     // Start is called before the first frame update
     void Start()
@@ -32,10 +32,10 @@ public class CityUI : MonoBehaviour
 
     public void OnClickPanelDepartments(int n_)
     {
-        for (int i = 0; i < departments.Count; i++)
+        for (int i = 0; i < depUpgrade.Count; i++)
         {
-            if (i != n_) departments[i].Close();
-            else departments[i].Inverse();
+            if (i != n_) depUpgrade[i].Close();
+            else depUpgrade[i].Inverse();
         }
         //if (oPanelDepartments[n_].activeSelf) oPanelDepartments[n_].SetActive(false);
         //else
