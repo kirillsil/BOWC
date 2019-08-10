@@ -133,29 +133,29 @@ public class Department : MonoBehaviour
             }
         }
 
-        string TimeString(float tim_)
-        {
-            int _t = (int)tim_;
-            int _d = _t / 86400;
-            _t = _t % 86400;
-            int _h = _t / 3600;
-            _t = _t % 3600;
-            int _m = _t / 60;
-            _t = _t % 60;
-            int _s = _t % 60;
-            string _r="";
-            if (_d > 0) _r = _d.ToString() + "дней";
-            if (_h > 0) _r += _h.ToString() + "час.";
-
-            if (_m > 0) _r += _m.ToString() + "мин.";
-            _r += _s.ToString() + "сек.";
-            return _r;
-
-        }
         //    public Text tLevel;
         //public Text tCurMax;
         //public Text tNextMax;
         //public Text tFullTime;
+    }
+    public static string TimeString(float tim_)
+    {
+        int _t = (int)tim_;
+        int _d = _t / 86400;
+        _t = _t % 86400;
+        int _h = _t / 3600;
+        _t = _t % 3600;
+        int _m = _t / 60;
+        _t = _t % 60;
+        int _s = _t % 60;
+        string _r="";
+        if (_d > 0) _r = _d.ToString() + "дней";
+        if (_h > 0) _r += _h.ToString() + "час.";
+
+        if (_m > 0) _r += _m.ToString() + "мин.";
+        _r += _s.ToString() + "сек.";
+        return _r;
+
     }
 
 

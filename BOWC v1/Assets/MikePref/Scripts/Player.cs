@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     public double money;
     public double moneyMax;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         s = this;
         money = GP.money;
