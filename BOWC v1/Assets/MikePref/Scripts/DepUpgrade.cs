@@ -11,6 +11,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     public int state; // 0 -  ? 1000- in upgrade
     public int upgrading; // 0-no, 1- doing 2 -max limit
    public bool onoff; // show panel
+    public string sAmountName;
 
     public Text tLevel;
     public Text tCurMax;
@@ -37,7 +38,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     void Start()
     {
         tLevel.text="Current level: "+(level+1).ToString();
-        tCurMax.text="Capacity: "+ GP.upgrade[index][5*level+1].ToString();
+        tCurMax.text=sAmountName+ GP.upgrade[index][5*level+1].ToString();
         InitStrings();
         
     }
@@ -134,7 +135,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     void Refresh()
     {
         tLevel.text = "Current level: "+(level+1).ToString();
-        tCurMax.text= "Capacity: "+GP.upgrade[index][5*(level)+1].ToString();
+        tCurMax.text= sAmountName+GP.upgrade[index][5*(level)+1].ToString();
         if (upgrading==1)
         {
             //oUpDoing.SetActive(true);
