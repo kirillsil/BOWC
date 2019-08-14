@@ -6,22 +6,22 @@ using UnityEngine;
 // Закрыть какое либо окно при клике за его пределами.
 public class CloseAnyWindow : MonoBehaviour
 {
-    public List<ICloseWindow> ICWs=new List<ICloseWindow>();
+    public List<ICloseWindow> ICWs = new List<ICloseWindow>();
     public static CloseAnyWindow s;
     // Start is called before the first frame update
     void Awake()
     {
-        s=this;
+        s = this;
     }
     void Start()
     {
-       gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void AddMe(ICloseWindow icw_)
     {
@@ -31,18 +31,27 @@ public class CloseAnyWindow : MonoBehaviour
     public void RemoveMe(ICloseWindow icw_)
     {
         ICWs.Remove(icw_);
-        if(ICWs.Count<1) gameObject.SetActive(false);
+        if (ICWs.Count < 1) gameObject.SetActive(false);
     }
 
-    public void OnClickMe()
+    //public void onclickme()
+    //{
+    //    while (icws.count > 0)
+    //    {
+    //        icws[0].closewindow();
+    //    }
+    //    icws.clear();
+    //    gameobject.setactive(false);
+    //}
+
+    public void OnMouseDown()
     {
-        //Debug.Log("count= "+ICWs.Count);
-        while(ICWs.Count>0)
+        while (ICWs.Count > 0)
         {
             ICWs[0].CloseWindow();
         }
         ICWs.Clear();
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 

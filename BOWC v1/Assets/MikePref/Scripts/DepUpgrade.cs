@@ -22,6 +22,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
  //   public Text tPrice;
 
     public float timeTo;
+   public bool trig;
 
     //    public Text tCurTime;
 
@@ -77,8 +78,23 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                 if (onoff) Refresh();
                 break;
         }
+        //if(Input.GetMouseButtonDown(0))
+        //{
+        //    if(trig) ;//trig=false;
+        //   // else Close();
+        //}
 
     }
+
+    //void OnMouseDown()
+    //{
+    //    if(onoff) trig=true;
+    //}
+
+    //public void OnPointDown()
+    //{
+    //    if(onoff) trig=true;
+    //}
 
     public void StartUpgrade()
     {
@@ -111,14 +127,14 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     {
         oPanel.SetActive(true);
         onoff = true;
-        CloseAnyWindow.s.AddMe(this);
+       // CloseAnyWindow.s.AddMe(this);
        // if (onoff) Refresh();
     }
     public void Close()
     {
         oPanel.SetActive(false);
         onoff = false;
-        CloseAnyWindow.s.RemoveMe(this);
+       // CloseAnyWindow.s.RemoveMe(this);
        // if (onoff) Refresh();
     }
 
