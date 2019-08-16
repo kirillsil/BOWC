@@ -30,4 +30,9 @@ public class Player : MonoBehaviour
         if (CityUI.s != null && money > GP.upgrade[0][5*CityUI.s.depUpgrade[0].level+1])
             money = GP.upgrade[0][5*CityUI.s.depUpgrade[0].level+1];
     }
+
+    public void AddUnit(int ind_, int num_)
+    {
+        units[ind_]+=num_;
+    }
 }
