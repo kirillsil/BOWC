@@ -83,4 +83,59 @@ public class GP
         return _r;
 
     }
+
+    public static string [] unitTypeName ={
+        "Sales manager",
+        "Asset manager",
+        "Lawyer",
+        "Analyst",
+        "PR manager",
+        "Security" };
+
+    public static string [] unitTypeDesc ={
+        "Sales management is a business discipline which is focused on the practical application of sales techniques and the management of a firm's sales operations.",
+        "Asset managers are responsible for the management, procurement, valuation, and disposition of a company's property, data, and documents. These assets may include anything from property to computers to cell phones.",
+        "A lawyer gives legal advice to people, government agencies, and businesses and offer representation to them when needed. They prepare legal documents and interpret laws, regulations, and rulings.",
+        "A business analyst is someone who analyzes an organization or business domain (real or hypothetical) and documents its business or processes or systems, assessing the business model or its integration with technology",
+        "Public Relations Manager develops and implements policies and procedures for the public relations department. Prepares and distributes news releases, fact sheets, scripts, etc. to media outlets.",
+        "A security guard (also known as a security inspector or protective agent) is a person employed by a government or private party to protect the employing partys assets (property, people, equipment, money, etc.)" };
+
+    public static int [] [] hire =  // параметры по найму юнитов - цена и время(сек)
+    {
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+        new int [] {50000,  600 },//---------------- продажный менеджер ------------------
+
+    };
+
+    public static int [][] unitAttackDefend=
+    {
+        new int [] { //sales 
+            57,38,
+            39,25,
+            24,13 },
+        new int [] { //asset 
+            10,10,
+            60,32,
+            20,15 },
+        new int [] { //lawer 
+            57,16,
+            33,13,
+            99,25 },
+        new int [] { //analist 
+            12,59,
+            7,32,
+            5,20 },
+        new int [] { //pr 
+            9,33,
+            21,91,
+            15,60 },
+        new int [] { //security
+            21,37,
+            15,27,
+            24,60 }
+    };
 }

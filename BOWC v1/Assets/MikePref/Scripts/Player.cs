@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     public static Player s;// singleton
     public double money;
     public double moneyMax;
+
+    public int [] units;
     // Start is called before the first frame update
     void Awake()
     {
