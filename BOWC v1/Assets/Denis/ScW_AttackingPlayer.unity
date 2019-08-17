@@ -1937,7 +1937,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Lawyers
+  m_Text: License
 --- !u!222 &785065682
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6504,19 +6504,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &5804540754109870056
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5844782635667545682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5072f5d59a22bc43ae572a830be8a88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Shade: 7
 --- !u!114 &5804565096070552262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6530,7 +6517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.16470589, g: 0.8156863, b: 0.72156864, a: 1}
+  m_Color: {r: 0.84705883, g: 0.32156864, b: 0.13333334, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -6669,7 +6656,6 @@ GameObject:
   - component: {fileID: 5909850913524793882}
   - component: {fileID: 5912259623277260188}
   - component: {fileID: 5804565096070552262}
-  - component: {fileID: 5804540754109870056}
   m_Layer: 5
   m_Name: Foreground
   m_TagString: Untagged
