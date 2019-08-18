@@ -19,6 +19,7 @@ public class Sc_Menu : MonoBehaviour
 
     public void OnClickStartBtn()
     {
-        SceneManager.LoadScene("mcp_day");
+       // SceneManager.LoadScene("mcp_day");
+        SceneManager.LoadScene("Sc_CharSelect");
     }
 }

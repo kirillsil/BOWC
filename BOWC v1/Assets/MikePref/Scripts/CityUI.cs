@@ -6,13 +6,16 @@ using UnityEngine.UI;
 public class CityUI : MonoBehaviour
 {
     public Text tMoney;
+    public Text tPlayerName;
 
     public GameObject oCity;
     public GameObject oOfficeSelf;
     public GameObject oOfficeBackGround;
     public GameObject oBuildingMenu;
+    public AttackWindows attackWindows;
     public bool cityOn;
     public static CityUI s;
+
 
     //public List<GameObject> oPanelDepartments;
     public List<DepUpgrade> depUpgrade;
@@ -22,6 +25,7 @@ public class CityUI : MonoBehaviour
     {
         s = this;
         tMoney.text = ((int)Player.s.money).ToString("### ### ### ###");
+        tPlayerName.text = Player.s.playerName;
     }
 
     // Update is called once per frame
@@ -69,7 +73,8 @@ public class CityUI : MonoBehaviour
 
     public void BuildingMenu(bool en_)
     {
-        oBuildingMenu.SetActive(en_);
+        //oBuildingMenu.SetActive(en_);
+        attackWindows.OpenClickPlayer();
     }
 
     public void upgradeComplete(int depIndex, int level_)

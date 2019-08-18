@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public static Player s;// singleton
     public double money;
     public double moneyMax;
+    public string playerName;
 
     public int [] units;
 
@@ -14,7 +15,7 @@ public class Player : MonoBehaviour
 
     public int [] depLevels; 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         s = this;
         money = GP.money;

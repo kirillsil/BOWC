@@ -21,11 +21,13 @@ public class BuildingOnMouseEnter : MonoBehaviour
     }
     void OnMouseEnter()
     {
-        rend.material.color = colSel;
+        rend.enabled=true;
+        //rend.material.color = colSel;
     }
     void OnMouseExit()
     {
-        rend.material.color = col;
+        rend.enabled=false;
+        //rend.material.color = col;
     }
    void OnMouseOver()
     {

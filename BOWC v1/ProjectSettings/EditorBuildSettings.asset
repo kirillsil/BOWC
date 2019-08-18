@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/menu scene 5.0.unity
+    path: Assets/Scenes/menu scene 5.0.unity
     guid: 7fec9f48c6a7e3749a8e4c755349ec2d
   - enabled: 1
     path: Assets/Scenes/mcp_day.unity
     guid: 9b84bc247323d094a8b6826caaa2507e
   - enabled: 1
-    path: Assets/Import Packages/RPG and MMO UI 8/Scenes/2 - Character Select (3D).unity
-    guid: 5dd73605f39ba3246b9764ca975f1cb8
+    path: Assets/Scenes/Sc_CharSelect.unity
+    guid: e7af3ce618a9e9e4fa74c8af10cb7cbc
   m_configObjects: {}
