@@ -61,6 +61,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                     duss.RemoveAt(0);
                     Destroy(_g);
                     level++;
+                    CityUI.s.upgradeComplete(index,level);
                     if(duss.Count>0 && Player.s.money>=GP.upgrade[index][5*(level+1)+2])
                         duss[0].ButtonOnOff(true);
  

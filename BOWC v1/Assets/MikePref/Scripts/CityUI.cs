@@ -71,4 +71,8 @@ public class CityUI : MonoBehaviour
     {
         oBuildingMenu.SetActive(en_);
     }
+
+    public void upgradeComplete(int depIndex, int level_)
+    {
+    }
 }

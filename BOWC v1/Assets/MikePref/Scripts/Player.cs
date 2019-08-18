@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     public double moneyMax;
 
     public int [] units;
+
+    public int workplaceNumber;// количество раб мест в офисе
+
+    public int [] depLevels; 
     // Start is called before the first frame update
     void Awake()
     {
