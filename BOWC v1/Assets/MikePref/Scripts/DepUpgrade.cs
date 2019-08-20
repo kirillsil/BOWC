@@ -23,6 +23,8 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
 
     public float timeTo;
    public bool trig;
+    public static int depInUpgrade=-1;//
+    public static List<Vector2> queueToUpgrades=new List<Vector2>(); // x- index of dep., y- level
 
     //    public Text tCurTime;
 
@@ -97,23 +99,19 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     //    if(onoff) trig=true;
     //}
 
-    public void StartUpgrade()
+    public void StartUpgrade(int lev_)
     {
         if(GP.upgrade[index][5*(level+1)+2]<=Player.s.money)
         {
             Player.s.AddMoney(-GP.upgrade[index][5*(level+1)+2]);
-           //oUpInfo.SetActive(false);
-           //oUpDoing.SetActive(true);
-            state = 1000;
-            upgrading = 1;
-            timeTo = GP.upgrade[index][5*(level+1)+3];
-            Refresh();
-            slTime2.gameObject.SetActive(true);
-            oProgress.SetActive(true);
-            duss[0].ButtonOnOff(false);
-            //GameObject _g=duss[0].gameObject;
-            //duss.RemoveAt(0);
-            //Destroy(_g);
+            //state = 1000;
+            //upgrading = 1;
+            //timeTo = GP.upgrade[index][5*(level+1)+3];
+            //Refresh();
+            //slTime2.gameObject.SetActive(true);
+            //oProgress.SetActive(true);
+            //duss[0].ButtonOnOff(false);
+            queueToUpgrades.Add(new Vector2(index,lev_));
         }
  
     }
@@ -198,6 +196,10 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                 _dus.Init(GP.upgrade[index][5*i],GP.upgrade[index][5*i+1],GP.upgrade[index][5*i+3],GP.upgrade[index][5*i+2],false,this);
         }
         oDepUpString.SetActive(false);
+    }
+
+    public void OnCompleteUpgrade()
+    {
     }
 }
 

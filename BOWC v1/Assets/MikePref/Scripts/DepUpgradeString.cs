@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DepUpgradeString : MonoBehaviour
 {
+    public int level;
     public Text tLevel;
     public Text tAmount;
     public Text tTime;
@@ -21,6 +22,7 @@ public class DepUpgradeString : MonoBehaviour
 
     public void Init(int lev_,int am_,int tim_, int price_, bool onoff_, DepUpgrade du_)
     {
+        level=lev_;
         tLevel.text=lev_.ToString();
         tAmount.text=am_.ToString();
         tTime.text=GP.TimeString(tim_);
@@ -33,7 +35,7 @@ public class DepUpgradeString : MonoBehaviour
 
     public void OnUpgradeButton()
     {
-        if(buttonActive) du.StartUpgrade();
+        if(buttonActive) du.StartUpgrade(level);
     }
     public void ButtonOnOff(bool onoff_)
     {
