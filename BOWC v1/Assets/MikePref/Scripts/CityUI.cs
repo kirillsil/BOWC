@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CityUI : MonoBehaviour
 {
     public Text tMoney;
+    public Text tGold;
     public Text tPlayerName;
 
     public GameObject oCity;
@@ -32,6 +33,7 @@ public class CityUI : MonoBehaviour
     void Update()
     {
         tMoney.text = ((int)Player.s.money).ToString("### ### ### ###");
+        tGold.text=Player.s.gold.ToString();
     }
 
     public void OnClickPanelDepartments(int n_)

@@ -34,6 +34,7 @@ public class GM : MonoBehaviour {
 		{
 			s=this;
 			DontDestroyOnLoad(gameObject);
+            GetComponent<Player>().Init();
 
 			if(Application.systemLanguage.ToString()=="Russian")
 			{

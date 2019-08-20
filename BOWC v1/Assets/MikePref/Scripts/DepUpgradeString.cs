@@ -22,7 +22,7 @@ public class DepUpgradeString : MonoBehaviour
 
     public void Init(int lev_,int am_,int tim_, int price_, bool onoff_, DepUpgrade du_)
     {
-        level=lev_;
+        level=lev_-1;
         tLevel.text=lev_.ToString();
         tAmount.text=am_.ToString();
         tTime.text=GP.TimeString(tim_);

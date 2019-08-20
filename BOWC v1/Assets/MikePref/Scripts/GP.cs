@@ -150,4 +150,6 @@ public class GP
             15,27,
             24,60 }
     };
+
+    public static int goldForOrderOneMoreUpgrade=5; //дополнительная надбавка по оплате при заказе апгрейда, если в очереди будет более 2 апгрейтов
 }
