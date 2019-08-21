@@ -123,6 +123,8 @@ public class GP
 
     };
 
+    public static int  hireAbove2=1; // Increasing the list of units hired above 2 orders in queue gold/unit
+
     public static int [][] unitAttackDefend=
     {
         new int [] { //sales 

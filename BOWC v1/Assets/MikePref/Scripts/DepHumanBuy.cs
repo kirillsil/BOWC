@@ -20,7 +20,8 @@ public class DepHumanBuy : MonoBehaviour
     public GameObject [] oPrevNextBtn;
    
     public GameObject oLayerBuy;
-
+    public GameObject oGoldPayWin;
+    public Text tGold;
     // Start is called before the first frame update
     void Start()
     {
@@ -115,15 +116,32 @@ public class DepHumanBuy : MonoBehaviour
         tPrice.text=GP.hire[unitIndex][0].ToString();
         tTime.text=GP.TimeString(GP.hire[unitIndex][0]);
         tUnitName.text=GP.unitTypeName[unitIndex];
-        slNum.maxValue=(int)Player.s.money/GP.hire[unitIndex][0];
+        int _n=Player.s.FreeWorkPlaces()-UnitsInOrder();
+        int _n1=(int)Player.s.money/GP.hire[unitIndex][0];
+        if(_n>_n1) _n=_n1;
+
+        slNum.maxValue=_n;
     }
 
     public void OnBuy()
     {
         if(slNum.value>0) orders.Add(new Vector2(unitIndex,slNum.value));
+        if(orders.Count>1)
+        {
+            oGoldPayWin.SetActive(true);
+
+            tGold.text=((orders.Count-1)*GP.hireAbove2).ToString();
+        }
+
         Player.s.AddMoney(-slNum.value*GP.hire[unitIndex][0]);
         RefreshBuy();
     }
 
+    public int UnitsInOrder()
+    {
+        int _n=0;
+        foreach(var _v in orders) _n+=(int)_v.y;
+        return _n;
+    }
 
 }

@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public int [] units;
 
+    public int unitSum;// всего юнитов
     public int workplaceNumber;// количество раб мест в офисе
 
     public int [] depLevels; 
@@ -33,6 +34,8 @@ public class Player : MonoBehaviour
     {
         s = this;
         money = GP.money;
+        workplaceNumber=40;
+
     }
 
     public void AddMoney(double m_)
@@ -50,5 +53,9 @@ public class Player : MonoBehaviour
     public void AddUnit(int ind_, int num_)
     {
         units[ind_]+=num_;
+    }
+    public int FreeWorkPlaces()
+    {
+        return workplaceNumber-unitSum;
     }
 }

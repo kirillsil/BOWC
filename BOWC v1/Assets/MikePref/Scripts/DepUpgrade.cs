@@ -83,6 +83,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                     //    duss[0].ButtonOnOff(true);
  
                     state = 0;
+                    toComplete=0;
                     if (level == GP.upgrade[index].Length-1)
                     {
                         upgrading = 2;

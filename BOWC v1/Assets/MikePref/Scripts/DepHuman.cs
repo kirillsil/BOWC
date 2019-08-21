@@ -91,10 +91,14 @@ public class DepHuman : MonoBehaviour
 
     void RefreshHire()
     {
+        int _n,_n1;
         for(int i=0;i<6;i++)
         {
             employed[i].text=Player.s.units[i].ToString()+" X "+GP.unitTypeName[i];
-            available[i].text="Available: 0";//+Player.s.
+            _n=Player.s.FreeWorkPlaces()-DHB.UnitsInOrder();
+            _n1=(int)Player.s.money/GP.hire[i][0];
+            if(_n>_n1) _n=_n1;
+            available[i].text="Available: "+_n.ToString();
         }
     }
 
@@ -105,6 +109,7 @@ public class DepHuman : MonoBehaviour
         oLayerHuman.SetActive(true);
         oLayerBuy.SetActive(false);
         oLayerChar.SetActive(false);
+        RefreshHire();
  
     }
 }
