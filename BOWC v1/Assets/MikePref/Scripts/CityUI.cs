@@ -15,6 +15,12 @@ public class CityUI : MonoBehaviour
     public GameObject oBuildingMenu;
     public AttackWindows attackWindows;
     public bool cityOn;
+
+    public BuyForGold orderForGold;
+    public BuyForGold speedForGold;
+
+
+
     public static CityUI s;
 
 
@@ -22,9 +28,14 @@ public class CityUI : MonoBehaviour
     public List<DepUpgrade> depUpgrade;
 
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         s = this;
+    }
+    void Start()
+    {
+        
         tMoney.text = ((int)Player.s.money).ToString("### ### ### ###");
         tPlayerName.text = Player.s.playerName;
     }
