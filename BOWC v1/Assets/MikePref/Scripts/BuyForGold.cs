@@ -84,6 +84,7 @@ public class BuyForGold : MonoBehaviour
             {
                 ibg.Speed50ForGold();
             }
+            Player.s.AddGold(-gold50);
          gameObject.SetActive(false);
        }
     }
@@ -92,6 +93,7 @@ public class BuyForGold : MonoBehaviour
         if(enough100)
         {
             ibg.Speed100ForGold();
+            Player.s.AddGold(-gold100);
              gameObject.SetActive(false);
         }
     }

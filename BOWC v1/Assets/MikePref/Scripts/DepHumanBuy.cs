@@ -26,6 +26,8 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
     public BuyForGold orderForGold;
     public BuyForGold speedForGold;
 
+    
+
     //public GameObject oGoldPayWin;
     //public GameObject oGoldPayWin50;
     //public Text tGold50;
@@ -79,7 +81,7 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
                     unitNumBuy[unitInProgress]--;
                     if(unitNumBuy[unitInProgress]>0)
                     {
-                        timeTo[unitInProgress]=timeTo[unitInProgress]+GP.hire[unitInProgress][1];
+                        timeTo[unitInProgress]=timeTo[unitInProgress]+(float)GP.hire[unitInProgress][1]/(1+speedUp);
                     }
                     else
                     {
@@ -120,7 +122,18 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
     {
         if(stateBuy[unitIndex]==1000)
         {
-
+            int _g50,_g100;
+            if(speedUp==0)
+            {
+                _g50=(int)orders[0].y;
+                _g100=2*(int)orders[0].y;
+            }
+            else
+            {
+                _g50=-1;
+                _g100=(int)orders[0].y;
+            }
+            speedForGold.SpeedUp(this,_g50,_g100);
             //Player.s.AddUnit(unitIndex,unitNumBuy[unitIndex]);
             //unitNumBuy[unitIndex]=0;
             //timeTo[unitIndex]= 0;
@@ -151,7 +164,7 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
         {
             if(orders.Count>1)
             {
-                int _pay=(int)orders[0].y*GP.hireAbove2;
+                int _pay=(int)slNum.value*GP.hireAbove2;
                orderForGold.Order(this,_pay);
                // oGoldPayWin.SetActive(true);
                // oGoldPayWin50.SetActive)false);
@@ -178,11 +191,23 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
 
     public void Speed50ForGold()
     {
-
+        timeTo[unitIndex]=timeTo[unitIndex]/2.0f;
+        timeAllTo[unitIndex]=timeAllTo[unitIndex]/2.0f;
+        speedUp=1;
+        RefreshBuy();
     }
     public void Speed100ForGold()
     {
-    }
+        Player.s.AddUnit(unitInProgress,unitNumBuy[unitInProgress]);
+        unitNumBuy[unitInProgress]=0;
+        timeTo[unitInProgress]= 0;
+        timeAllTo[unitInProgress]= 0;
+        stateBuy[unitInProgress]=0;
+        unitInProgress=-1;
+        orders.RemoveAt(0);
+        speedUp=0;
+        RefreshBuy();
+   }
 
     public int UnitsInOrder()
     {

@@ -30,11 +30,21 @@ public class MouseLook : MonoBehaviour {
 
     public Transform trCam;
     public float vel;
+    public float tim;
 
     float rotationY = 0F;
 
 	void Update ()
 	{
+       // if(Input.GetMouseButtonDown(0)) tim=Time.time+1;//
+       // if(tim<Time.time) { Cursor.lockState=CursorLockMode.Locked; tim+=100000; }
+       // if(Input.GetMouseButtonUp(0)) Cursor.lockState=CursorLockMode.None;
+        if(Input.GetMouseButton(0))
+        {
+           // Cursor.lockState=CursorLockMode.Locked;
+           // Cursor.lockState=CursorLockMode.None;
+           // Cursor.visible = false;
+            //Vector3 _mp=Input.mousePosition;
 		if (axes == RotationAxes.MouseXAndY)
 		{
 			float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivityX;
@@ -55,7 +65,9 @@ public class MouseLook : MonoBehaviour {
 			
 			transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
 		}
-
+        //Input.mousePosition=_mp;
+        
+        }
         if (Input.GetKey("w")) transform.Translate(Vector3.forward * vel * Time.deltaTime);
         if (Input.GetKey("s")) transform.Translate(-Vector3.forward * vel * Time.deltaTime);
         if (Input.GetKey("a")) transform.Translate(Vector3.left * vel * Time.deltaTime);
