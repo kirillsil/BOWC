@@ -118,14 +118,14 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
 
     public void StartUpgrade(int lev_)
     {
-        if(GP.upgrade[index][5*(level+1)+2]<=Player.s.money)
+        if(GP.upgrade[index][5*(lev_)+2]<=Player.s.money)
         {
             int _n=queueToUpgrades.Count;
             if((_n>1 && GP.goldForOrderOneMoreUpgrade*(_n-1)<=Player.s.gold) ||
                 _n<3)
             {
                  if(_n>1) Player.s.AddGold(-GP.goldForOrderOneMoreUpgrade*(_n-1));
-                Player.s.AddMoney(-GP.upgrade[index][5*(level+1)+2]);
+                Player.s.AddMoney(-GP.upgrade[index][5*(lev_)+2]);
                 //state = 1000;
                 //upgrading = 1;
                 //timeTo = GP.upgrade[index][5*(level+1)+3];
@@ -136,6 +136,7 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                 queueToUpgrades.Add(new Vector2(index,lev_));
                 DepUpgradeString _dus=duss[0];
                 duss.RemoveAt(0);
+                CurrentUpgrade.s.NewString(index,lev_,this);
                 Destroy(_dus.gameObject);
                 if(duss.Count>0)
                 {
@@ -254,6 +255,15 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
                 }
             }
         }
+    }
+
+    public bool IsUgrading(int lev_)
+    {
+        return lev_==level && state==1000;
+    }
+    public float GetTimeTo()
+    {
+        return timeTo;
     }
 }
 
