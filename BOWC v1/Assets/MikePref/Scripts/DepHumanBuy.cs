@@ -19,6 +19,8 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
     public float [] timeTo;
     public float [] timeAllTo;
 
+	public Image iUnit;
+
     public GameObject [] oPrevNextBtn;
    
     public GameObject oLayerBuy;
@@ -88,9 +90,9 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
                         timeTo[unitInProgress]= 0;
                         timeAllTo[unitInProgress]= 0;
                         stateBuy[unitInProgress]=0;
-                            unitInProgress=-1;
-                            orders.RemoveAt(0);
-                            speedUp=0;
+                        unitInProgress=-1;
+                        orders.RemoveAt(0);
+                        speedUp=0;
                     }
                 }
                 if(oLayerBuy.activeSelf && unitInProgress==unitIndex) RefreshBuy();
@@ -106,14 +108,17 @@ public class DepHumanBuy : MonoBehaviour, IBuyForGold
         RefreshBuy();
         oPrevNextBtn[0].SetActive(unitIndex>0);
         oPrevNextBtn[1].SetActive(unitIndex<5);
-        
-   }
+		iUnit.sprite=GetComponent<DepHumanChar>().spUnits[unitIndex];
+
+	}
 
     public void OnPrevNext( int i_)
     {
         unitIndex+=i_;
         OpenBuy(unitIndex);
-    }
+		iUnit.sprite=GetComponent<DepHumanChar>().spUnits[unitIndex];
+
+	}
    public void OnBuyMax()
     {
         slNum.value=slNum.maxValue;

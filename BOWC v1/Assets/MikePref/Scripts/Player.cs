@@ -53,7 +53,8 @@ public class Player : MonoBehaviour
     public void AddUnit(int ind_, int num_)
     {
         units[ind_]+=num_;
-    }
+		if (TroopsWindow.s!=null) TroopsWindow.s.Refresh();
+	}
     public int FreeWorkPlaces()
     {
         return workplaceNumber-unitSum;
