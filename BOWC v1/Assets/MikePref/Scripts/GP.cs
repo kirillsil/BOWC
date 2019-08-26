@@ -7,10 +7,11 @@ using UnityEngine;
 
 public class GP 
 {
-    public static double money = 500000; // initial
+	public static double money = 500000; // initial
+	public static int gold = 1000; // initial
 
-    // Departments Params
-   public static string [] depName ={
+	// Departments Params
+	public static string [] depName ={
         "Vault",
         "Sales and marketing",
         "Human resources",

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DepUpgrade : MonoBehaviour , ICloseWindow
+public class DepUpgrade : MonoBehaviour, IBuyForGold, IDepWindow, ICloseWindow
 {
     public int index;
     public int level;
@@ -38,16 +38,23 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     public List <DepUpgradeString> duss;
     public GameObject oProgress;
 
-    // Start is called before the first frame update
-    void Start()
+	public BuyForGold orderForGold;
+	public BuyForGold speedForGold;
+	public int levelForQueue;
+
+	// Start is called before the first frame update
+	void Start()
     {
+		CityUI.s.AddDepWindow(this);
         tLevel.text="Current level: "+(level+1).ToString();
         tCurMax.text=sAmountName+ GP.upgrade[index][5*level+1].ToString();
         InitStrings();
-        
-    }
+		orderForGold=CityUI.s.orderForGold;
+		speedForGold=CityUI.s.speedForGold;
 
-    void Update()
+	}
+
+	void Update()
     {
         switch (state)
         {
@@ -106,45 +113,43 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
 
     }
 
-    //void OnMouseDown()
-    //{
-    //    if(onoff) trig=true;
-    //}
+	//void OnMouseDown()
+	//{
+	//    if(onoff) trig=true;
+	//}
 
-    //public void OnPointDown()
-    //{
-    //    if(onoff) trig=true;
-    //}
+	//public void OnPointDown()
+	//{
+	//    if(onoff) trig=true;
+	//}
 
-    public void StartUpgrade(int lev_)
-    {
-        if(GP.upgrade[index][5*(lev_)+2]<=Player.s.money)
-        {
-            int _n=queueToUpgrades.Count;
-            if((_n>1 && GP.goldForOrderOneMoreUpgrade*(_n-1)<=Player.s.gold) ||
-                _n<3)
-            {
-                 if(_n>1) Player.s.AddGold(-GP.goldForOrderOneMoreUpgrade*(_n-1));
-                Player.s.AddMoney(-GP.upgrade[index][5*(lev_)+2]);
-                //state = 1000;
-                //upgrading = 1;
-                //timeTo = GP.upgrade[index][5*(level+1)+3];
-                //Refresh();
-                //slTime2.gameObject.SetActive(true);
-                //oProgress.SetActive(true);
-                //duss[0].ButtonOnOff(false);
-                queueToUpgrades.Add(new Vector2(index,lev_));
-                DepUpgradeString _dus=duss[0];
-                duss.RemoveAt(0);
-                CurrentUpgrade.s.NewString(index,lev_,this);
-                Destroy(_dus.gameObject);
-                if(duss.Count>0)
-                {
-                    if(GP.upgrade[index][5*(duss[0].level)+2]<=Player.s.money) duss[0].ButtonOnOff(true);
-                }
-            }
-        }
-    }
+	public void StartUpgrade(int lev_)
+	{
+		if (GP.upgrade[index][5*(lev_)+2]<=Player.s.money)
+		{
+			int _n = queueToUpgrades.Count;
+			if (_n<2)
+			{
+				Player.s.AddMoney(-GP.upgrade[index][5*(lev_)+2]);
+				queueToUpgrades.Add(new Vector2(index,lev_));
+				DepUpgradeString _dus = duss[0];
+				duss.RemoveAt(0);
+				CurrentUpgrade.s.NewString(index,lev_,this);
+				Destroy(_dus.gameObject);
+				if (duss.Count>0)
+				{
+					if (GP.upgrade[index][5*(duss[0].level)+2]<=Player.s.money)
+						duss[0].ButtonOnOff(true);
+				}
+			}
+			else
+			{
+				int _g = GP.goldForOrderOneMoreUpgrade*(_n-1);
+				orderForGold.Order(this,_g);
+				levelForQueue=lev_;
+			}
+		}
+	}
 
     public void Show(bool onoff_)
     {
@@ -156,10 +161,14 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     {
         oPanel.SetActive(true);
         onoff = true;
-       // CloseAnyWindow.s.AddMe(this);
-       // if (onoff) Refresh();
-    }
-    public void Close()
+		if (duss.Count>0)
+		{
+			duss[0].ButtonOnOff(GP.upgrade[index][5*(duss[0].level)+2]<=Player.s.money);
+		}
+		// CloseAnyWindow.s.AddMe(this);
+		// if (onoff) Refresh();
+	}
+	public void Close()
     {
         oPanel.SetActive(false);
         onoff = false;
@@ -230,11 +239,17 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
 
     public void OnCompleteUpgrade()
     {
+		int _g50, _g100;
         if(state==1000)
         {
             if(toComplete==0)
             {
-                if(Player.s.gold>=5*(level+1))
+				_g50 = 5*(level+1);
+				_g100= 10*(level+1);
+
+				speedForGold.SpeedUp(this,_g50,_g100);
+
+				if (Player.s.gold>=5*(level+1))
                 {
                     Player.s.AddGold(-5*(level+1));
                     //(GP.upgrade[index][5*(level+1)+3] - timeTo)
@@ -245,14 +260,11 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
             }
             if(toComplete==1)
             {
-               if(Player.s.gold>=5+5*(level+1))
-                {
-                    Player.s.AddGold(-5-5*(level+1));
-                    //(GP.upgrade[index][5*(level+1)+3] - timeTo)
-                    timeTo=0;
-                    toComplete=0;
-                    return;
-                }
+				_g50=-1;
+				_g100= 5*(level+1);
+
+				speedForGold.SpeedUp(this,_g50,_g100);
+
             }
         }
     }
@@ -265,9 +277,51 @@ public class DepUpgrade : MonoBehaviour , ICloseWindow
     {
         return timeTo;
     }
+	public void OrderForGold()
+	{
+		Player.s.AddMoney(-GP.upgrade[index][5*(levelForQueue)+2]);
+		queueToUpgrades.Add(new Vector2(index,levelForQueue));
+		DepUpgradeString _dus = duss[0];
+		duss.RemoveAt(0);
+		CurrentUpgrade.s.NewString(index,levelForQueue,this);
+		Destroy(_dus.gameObject);
+		if (duss.Count>0)
+		{
+			if (GP.upgrade[index][5*(duss[0].level)+2]<=Player.s.money)
+				duss[0].ButtonOnOff(true);
+		}
+	}
+
+	public void Speed50ForGold()
+	{
+		timeTo-=0.5f*GP.upgrade[index][5*(level+1)+3];
+		toComplete=1;
+	}
+	public void Speed100ForGold()
+	{
+		timeTo=0;
+		toComplete=0;
+	}
+
+	public int GetLevel()
+	{
+		return level;
+	}
+	public int GetIndex()
+	{
+		return index;
+	}
 }
 
 public interface ICloseWindow
 {
-    void CloseWindow();
+	void CloseWindow();
+}
+public interface IDepWindow
+{
+	void Close();
+	void Open();
+	void Inverse();
+	int GetLevel();
+	int GetIndex();
 }

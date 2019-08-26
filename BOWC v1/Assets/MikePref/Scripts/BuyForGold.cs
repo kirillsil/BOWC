@@ -85,8 +85,8 @@ public class BuyForGold : MonoBehaviour
                 ibg.Speed50ForGold();
             }
             Player.s.AddGold(-gold50);
-         gameObject.SetActive(false);
-       }
+			gameObject.SetActive(false);
+		}
     }
     public void OnBtnBuy100()
     {
