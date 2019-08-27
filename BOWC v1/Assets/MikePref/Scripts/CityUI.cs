@@ -18,6 +18,7 @@ public class CityUI:MonoBehaviour
 
 	public BuyForGold orderForGold;
 	public BuyForGold speedForGold;
+	public BuyForGold buyOfficeForGold;
 
 
 

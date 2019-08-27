@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     public int unitSum;// всего юнитов
     public int workplaceNumber;// количество раб мест в офисе
 
-    public int [] depLevels; 
-	public
+    public int [] depLevels;
+	public int officeNumber;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +38,9 @@ public class Player : MonoBehaviour
 		gold=GP.gold;
 
         workplaceNumber=40;
+		officeNumber=1;
 
-    }
+	}
 
     public void AddMoney(double m_)
     {
@@ -62,4 +63,9 @@ public class Player : MonoBehaviour
     {
         return workplaceNumber-unitSum;
     }
+
+	public void AddNewOffice()
+	{
+		officeNumber++;
+	}
 }

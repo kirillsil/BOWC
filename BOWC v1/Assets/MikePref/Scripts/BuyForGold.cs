@@ -10,8 +10,9 @@ public class BuyForGold : MonoBehaviour
 
     IBuyForGold ibg;
 
-    public Text tGold50;
-    public Text tGold100;
+	public Text tCurGold;
+	public Text tGold50;
+	public Text tGold100;
 
     public Image iGold50;
     public Image iGold100;
@@ -38,7 +39,9 @@ public class BuyForGold : MonoBehaviour
         gameObject.SetActive(true);
         ibg=ibg_;
         gold50=gold_;
-        tGold50.text=gold_.ToString();
+		tCurGold.text="Current gold: "+Player.s.gold.ToString();
+
+		tGold50.text=gold_.ToString();
         enough50=gold_<=Player.s.gold;
         if(!enough50) iGold50.color=new Color(0.3f,0.3f,0.3f);
         else iGold50.color=Color.white;
@@ -48,7 +51,8 @@ public class BuyForGold : MonoBehaviour
     {
         order=false;
         gameObject.SetActive(true);
-        ibg=ibg_;
+		tCurGold.text="Current gold = "+Player.s.gold.ToString();
+		ibg=ibg_;
         if(gold50_<0)
         {
             tGold50.text="0";
