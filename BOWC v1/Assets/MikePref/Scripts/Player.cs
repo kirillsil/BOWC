@@ -40,6 +40,8 @@ public class Player : MonoBehaviour
         workplaceNumber=40;
 		officeNumber=1;
 
+		playerName="Anonim";
+
 	}
 
     public void AddMoney(double m_)
@@ -57,6 +59,7 @@ public class Player : MonoBehaviour
     public void AddUnit(int ind_, int num_)
     {
         units[ind_]+=num_;
+		unitSum+=num_;
 		if (TroopsWindow.s!=null) TroopsWindow.s.Refresh();
 	}
     public int FreeWorkPlaces()
@@ -67,5 +70,10 @@ public class Player : MonoBehaviour
 	public void AddNewOffice()
 	{
 		officeNumber++;
+	}
+
+	public int GetUnitsNumber()
+	{
+		return unitSum;
 	}
 }

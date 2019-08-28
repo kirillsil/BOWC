@@ -21,6 +21,6 @@ public class Sc_CharSelect : MonoBehaviour
     public void OnCreate()
     {
         Player.s.playerName=inName.text;
-        SceneManager.LoadScene("mcp_day");
+        SceneManager.LoadScene("Sc_Play1");
     }
 }
