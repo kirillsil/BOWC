@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/menu scene 5.0.unity
     guid: 7fec9f48c6a7e3749a8e4c755349ec2d
   - enabled: 1
-    path: Assets/Scenes/OldVersions/mcp_day.unity
-    guid: 9b84bc247323d094a8b6826caaa2507e
-  - enabled: 1
     path: Assets/Scenes/Sc_CharSelect.unity
     guid: e7af3ce618a9e9e4fa74c8af10cb7cbc
   - enabled: 1
