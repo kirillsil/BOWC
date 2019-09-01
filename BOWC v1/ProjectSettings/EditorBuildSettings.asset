@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sc_CharSelect.unity
     guid: e7af3ce618a9e9e4fa74c8af10cb7cbc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Sc_Play1.unity
     guid: b57b29d08bed8994ebfd468dd33e8c4e
   m_configObjects: {}
